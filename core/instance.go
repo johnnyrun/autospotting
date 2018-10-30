@@ -189,6 +189,7 @@ func (i *instance) isPriceCompatible(spotPrice float64, bestPrice float64) bool 
 }
 
 func (i *instance) isClassCompatible(spotCandidate instanceTypeInformation) bool {
+	const memoryRatio = 0.90
 	current := i.typeInfo
 
 	debug.Println("Comparing class spot/instance:")
@@ -198,7 +199,7 @@ func (i *instance) isClassCompatible(spotCandidate instanceTypeInformation) bool
 		" / ", current.memory, " / ", current.GPU)
 
 	return spotCandidate.vCPU >= current.vCPU &&
-		spotCandidate.memory >= current.memory &&
+		( spotCandidate.memory / current.memory ) > memoryRatio &&
 		spotCandidate.GPU >= current.GPU
 }
 
