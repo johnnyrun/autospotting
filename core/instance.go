@@ -294,7 +294,7 @@ func (i *instance) getCheapestCompatibleSpotInstanceType(allowedList []string, d
 
 	for _, candidate := range i.region.instanceTypeInformation {
 
-		logger.Println("Comparing ", candidate.instanceType, " with ",
+		debug.Println("Comparing ", candidate.instanceType, " with ",
 			current.instanceType)
 
 		candidatePrice := i.calculatePrice(candidate)
